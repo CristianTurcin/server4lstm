@@ -7,7 +7,7 @@ import os
 app = Flask(__name__)
 
 # Căi către model și scaler
-MODEL_PATH = 'bilstm_model.keras'
+MODEL_PATH = 'bilstm_model.h5'
 SCALER_PATH = 'scaler.save'
 
 # Încarcă modelul și scalerul
