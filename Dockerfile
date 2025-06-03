@@ -7,6 +7,8 @@ WORKDIR /app
 # Copiază fișierele în container
 COPY . .
 
+# ✅ Afișează ce fișiere sunt în director
+RUN ls -la
 # Instalează dependențele
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
