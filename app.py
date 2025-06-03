@@ -14,6 +14,10 @@ SCALER_PATH = 'scaler.save'
 model = tf.keras.models.load_model(MODEL_PATH)
 scaler = joblib.load(SCALER_PATH)
 
+@app.route("/", methods=["GET"])
+def home():
+    return "✅ App is running"
+
 @app.route("/predict", methods=["POST"])
 def predict():
     data = request.get_json()
@@ -40,6 +44,3 @@ def predict():
 
     return jsonify({"predicted_weights": [round(w, 2) for w in predicted_weights]})
 
-# Pentru rulare locală
-if __name__ == "__main__":
-    app.run(debug=True, host='0.0.0.0', port=5000)
