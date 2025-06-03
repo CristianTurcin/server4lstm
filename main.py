@@ -3,7 +3,7 @@ import numpy as np
 import tensorflow as tf
 import joblib
 import os
-
+print("✅ Fișierul app.py a fost importat")
 print("🚀 FIȘIER app.py A FOST ÎNCĂRCAT")  # confirmăm că Railway vede acest fișier
 
 app = Flask(__name__)
