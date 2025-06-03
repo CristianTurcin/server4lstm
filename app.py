@@ -4,31 +4,36 @@ import tensorflow as tf
 import joblib
 import os
 
+print("🚀 FIȘIER app.py A FOST ÎNCĂRCAT")  # confirmăm că Railway vede acest fișier
+
 app = Flask(__name__)
 
 @app.route("/", methods=["GET"])
 def home():
+    print("✅ Ruta / accesată")
     return "✅ App is running"
 
-# Căi către model și scaler
+# === Căi către model și scaler ===
 MODEL_PATH = 'bilstm_model.keras'
 SCALER_PATH = 'scaler.save'
 
 print("🔄 Încarc modelul și scalerul...")
 
+# === Încarcă modelul ===
 try:
     model = tf.keras.models.load_model(MODEL_PATH)
     print("✅ Model încărcat cu succes.")
 except Exception as e:
     print("❌ Eroare la încărcarea modelului:", e)
 
+# === Încarcă scalerul ===
 try:
     scaler = joblib.load(SCALER_PATH)
     print("✅ Scaler încărcat cu succes.")
 except Exception as e:
     print("❌ Eroare la încărcarea scalerului:", e)
 
-
+# === Endpoint de predicție ===
 @app.route("/predict", methods=["POST"])
 def predict():
     print("📩 Request primit pe /predict")
@@ -70,7 +75,7 @@ def predict():
         print("❌ Eroare în /predict:", e)
         return jsonify({"error": "Eroare internă", "details": str(e)}), 500
 
-
-# Rulare locală (opțional)
+# === LOCAL RUN (nu e folosit în Railway) ===
 if __name__ == "__main__":
+    print("🧪 Rulare locală activată")
     app.run(debug=True, host='0.0.0.0', port=5000)
